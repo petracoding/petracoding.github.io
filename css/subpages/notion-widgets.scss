@@ -8,7 +8,7 @@
     font-family: "Mukta", sans-serif;
     font-size: 16px;
     line-height: 1.75;
-    background: rgb(233, 233, 233);
+    background: #eee4e4;
     border: 1px solid rgb(137, 137, 137);
     padding: 5px 15px;
     margin-bottom: 0.5em;
@@ -50,7 +50,7 @@
     width: 100%;
     display: block;
   }
-
+  input[type="radio"],
   input[type="checkbox"] {
     filter: saturate(0) brightness(0.9);
   }
@@ -73,7 +73,7 @@
 
   iframe {
     width: 100%;
-    border: 2px solid white;
+    border: 1px solid rgb(137, 137, 137);
     margin-bottom: 1em;
   }
 
@@ -104,7 +104,7 @@
       border-color: rgb(42, 42, 44);
 
       &:focus {
-        border-color: #eee;
+        border-color: #f4ecec;
       }
     }
 
@@ -117,6 +117,10 @@
       &:focus {
         filter: brightness(0.8);
       }
+    }
+
+    iframe {
+      border: 2px solid white;
     }
   }
 }

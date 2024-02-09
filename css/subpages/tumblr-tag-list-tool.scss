@@ -1,12 +1,11 @@
-
 .tumblr-tag-list-tool {
   button,
   input[type="text"],
   textarea {
-    font-family: 'Mukta', sans-serif;
+    font-family: "Mukta", sans-serif;
     font-size: 16px;
     line-height: 1.75;
-    background: rgb(233, 233, 233);
+    background: #eee4e4;
     border: 1px solid rgb(137, 137, 137);
     padding: 5px 15px;
 
@@ -19,20 +18,20 @@
       border: 1px solid black;
     }
   }
-  
+
   input[type="text"] {
-  	margin-top: 10px;
-  	width: 100%;
+    margin-top: 10px;
+    width: 100%;
   }
 
   textarea {
-  	width: 100%;
-  	margin: 10px 0;
-  	min-height: 250px;
+    width: 100%;
+    margin: 10px 0;
+    min-height: 250px;
   }
 
   button {
-  	margin: 20px 0;
+    margin: 20px 0;
     cursor: pointer;
 
     &:hover,
@@ -42,14 +41,14 @@
   }
 
   span {
-  	display: block;
-  	margin-top: 30px;
+    display: block;
+    margin-top: 30px;
   }
 
   label {
-  	width: 100%;
-  	display: block;
-  	margin-top: 10px;
+    width: 100%;
+    display: block;
+    margin-top: 10px;
   }
 
   input[type="checkbox"] {
@@ -57,8 +56,8 @@
   }
 
   #output {
-  	padding: 10px;
-  	border: 2px solid lightgray;
+    padding: 10px;
+    border: 2px solid lightgray;
     max-height: 85vh;
     overflow-y: auto;
 
@@ -83,7 +82,7 @@
       border-color: rgb(42, 42, 44);
 
       &:focus {
-        border-color: #eee;
+        border-color: #f4ecec;
       }
     }
 
