@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>petrapixel stats</title>
+    <script src="main.js"></script>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+    <style>
+      @font-face {
+        font-family: "basiic";
+        src: url(https://cinni.net/fonts/basiic.ttf);
+      }
+
+      body {
+        font-family: "basiic", sans-serif;
+        background: #f8a48a;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        font-size: 0.8em;
+        color: #612e43;
+      }
+
+      main {
+        max-width: 170px;
+      }
+
+      a,
+      a:hover,
+      a:visited,
+      a:focus,
+      a:active {
+        color: #612e43;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div id="lastfm-widget">
+        <div id="widget">
+          <a href="https://www.last.fm/user/Petra1999" target="_blank" id="song">loading...</a>
+        </div>
+      </div>
+    </main>
+    <script type="text/javascript">
+      let user = "Petra1999";
+      let url = "https://lastfm-last-played.biancarosa.com.br/" + user + "/latest-song";
+      let song = document.querySelector("#song");
+      fetch(url)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (json) {
+          song.innerHTML = json["track"]["name"] + " – " + json["track"]["artist"]["#text"];
+        });
+    </script>
+  </body>
+</html>
