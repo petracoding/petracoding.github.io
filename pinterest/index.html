@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pinterest Board iFrame</title>
+    <script src="../main.js"></script>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  </head>
+  <body class="pinterest-board">
+    <main>
+      <h1>Pinterest Board iFrame</h1>
+      <p>Easily generate a Pinterest board widget!</p>
+
+      <br />
+      <!-- <h2>Input</h2> -->
+      <span>Paste the link to your pinterest board:</span>
+      <input type="text" id="your-link" placeholder="https://www.pinterest.at/yourUsername/example/subExample/" value="" />
+      <label><input type="checkbox" id="hide-header" /> Hide Header <small>(Header includes your display name, icon and the title of the board)</small></label>
+
+      <br />
+      <h2>Result</h2>
+      <strong>HTML (iFrame):</strong>
+      <textarea class="output" readonly="readonly"></textarea>
+      <span>or...</span>
+      <strong>Notion Embed Link:</strong>
+      <textarea class="outputNotion" readonly="readonly"></textarea>
+      <span><small>(Paste this code in Notion and select "Create embed")</small></span>
+
+      <br />
+      <h2>Preview</h2>
+      <span><small>(If you can't see anything here the link to your pinterest board is incorrect!)</small></span>
+      <iframe class="preview"></iframe>
+    </main>
+  </body>
+</html>
