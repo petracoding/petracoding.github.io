@@ -28,7 +28,10 @@ a {
   &:hover,
   &:focus,
   &:visited {
-    color: #1d5999;
+    &,
+    & small {
+      color: #1d5999;
+    }
   }
 }
 
@@ -78,6 +81,32 @@ h2 {
   }
 }
 
+.back-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 0.5em;
+  line-height: 1;
+
+  a {
+    display: block;
+    text-decoration: none;
+    color: #251d35;
+    padding: 0.5em;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+      color: #251d35;
+    }
+  }
+
+  @media (max-width: 900px) {
+    display: none;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     background: rgb(12, 11, 14);
@@ -92,7 +121,21 @@ h2 {
     &:hover,
     &:focus,
     &:visited {
-      color: #6c89b7;
+      &,
+      & small {
+        color: #6c89b7;
+      }
+    }
+  }
+
+  .back-link {
+    a {
+      color: rgb(190, 188, 195);
+
+      &:hover,
+      &:focus {
+        color: rgb(190, 188, 195);
+      }
     }
   }
 }
