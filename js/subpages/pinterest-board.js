@@ -17,7 +17,7 @@ function buildURL() {
     document.querySelector(".outputNotion").value = "";
     document.querySelector("iframe").setAttribute("src", "");
   } else {
-    url += "?link=" + link.replace("https://www.pinterest.at/", "");
+    url += "?link=" + cleanPinterestUrl(link);
     const hideHeader = document.querySelector("#hide-header").checked;
     url += "&hideHeader=" + (hideHeader ? "1" : "0");
     document.querySelector("iframe").setAttribute("src", url);
@@ -26,4 +26,13 @@ function buildURL() {
     document.querySelector(".output").value = output;
     document.querySelector(".outputNotion").value = url;
   }
+}
+
+function cleanPinterestUrl(link) {
+  const i = getPosition(link, "/", 3);
+  return link.substr(i).substr(1);
+}
+
+function getPosition(string, subString, index) {
+  return string.split(subString, index).join(subString).length;
 }
