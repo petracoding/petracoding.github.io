@@ -29,12 +29,14 @@ document.addEventListener("DOMContentLoaded", function () {
     url += "&color=" + color;
     if (container.querySelector("#text-bg").checked) {
       container.querySelector(".only-show-if-bg-color").style.visibility = "visible";
+      container.querySelector(".only-show-if-bg-color").style.height = "auto";
       const background = container.querySelector("#text-background").value.replace("#", "");
       url += "&background=" + background;
       const corners = container.querySelector("#text-corners").value;
       url += "&corners=" + corners;
     } else {
       container.querySelector(".only-show-if-bg-color").style.visibility = "hidden";
+      container.querySelector(".only-show-if-bg-color").style.height = "1px";
     }
     const font = container.querySelector("#text-font").value;
     url += "&font=" + font;
