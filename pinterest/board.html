@@ -9,10 +9,6 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <style>
-      body {
-        background: transparent;
-      }
-
       body > span {
         width: 100% !important;
         height: 100% !important;
@@ -35,6 +31,7 @@
     <script>
       const link = findGetParameter("link");
       const hideHeader = findGetParameter("hideHeader") || false;
+      const transparent = findGetParameter("transparent") || false;
 
       if (link) {
         document.querySelector('[data-pin-do="embedBoard"]').setAttribute("href", "https://www.pinterest.at/" + link);
@@ -45,7 +42,16 @@
         styleSheet.innerText = `
 		    body > span > span[data-pin-log="embed_grid"]:first-child {
 		        display: none !important;
-		      }`;
+		      }
+			  
+			 body > *:first-child { padding-top: 10px; } `;
+        document.head.appendChild(styleSheet);
+      }
+
+      if (transparent == "1") {
+        var styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+			 body > *:first-child { background: transparent !important; } `;
         document.head.appendChild(styleSheet);
       }
 

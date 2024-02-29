@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     buildURL();
     document.querySelector("#your-link").addEventListener("input", buildURL);
     document.querySelector("#hide-header").addEventListener("input", buildURL);
+    document.querySelector("#transparent-bg").addEventListener("input", buildURL);
   }
 });
 
@@ -20,6 +21,8 @@ function buildURL() {
     url += "?link=" + cleanPinterestUrl(link);
     const hideHeader = document.querySelector("#hide-header").checked;
     url += "&hideHeader=" + (hideHeader ? "1" : "0");
+    const transparent = document.querySelector("#transparent-bg").checked;
+    url += "&transparent=" + (transparent ? "1" : "0");
     document.querySelector("iframe").setAttribute("src", url);
 
     const output = `<iframe src="${url}"></iframe>`;
