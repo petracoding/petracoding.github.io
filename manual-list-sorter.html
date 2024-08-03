@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Manual List Sorter Tool</title>
+    <title>Manual List Sorter</title>
     <script src="main.js"></script>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
     <meta content="utf-8" http-equiv="encoding" />
@@ -13,21 +13,37 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
   </head>
-  <body class="tumblr-tag-list-tool">
+  <body class="manual-list-sorter">
     <main>
       <h1>Manual List Sorter Tool</h1>
       <p>This is a little tool to easily create tag lists you can share anywhere. Created by <a href="https://petracoding.github.io/">Petra</a>.</p>
+      <br />
 
-      <span>Enter your list(s) <small>(separated by new line or comma)</small>:</span>
-      <textarea placeholder="example 1, example2"></textarea>
+      <p>Insert your comma-seperated list here:</p>
+      <textarea id="input" placeholder="example, example">
+Lorem,ipsum,dolor,sit,amet,consetetur,sadipscing,elitr,sed,diam,nonumy,eirmod,tempor,invidunt,ut,labore,et,dolore,magna,aliquyam,erat,sed,diam,voluptua.,at,vero,eos,et,accusam,et,justo,duo,dolores,et,ea,rebum.,stet,clita,kasd,gubergren,no,sea,takimata,sanctus,est,Lorem,ipsum,dolor,sit,amet.</textarea
+      >
+      <button id="start">start</button>
 
-      <label><input type="checkbox" id="sort" /> Sort alphabetically</label>
+      <br />
 
-      <span><small>After clicking "Generate" just copy everything below and paste it into a pinned post or anywhere else.</small></span>
+      <center>
+        <span id="word" style="font-size: 3em">click start to start</span>
+        <br />
+        <button id="sortInto1" disabled="disabled">➜ List 1</button>
+        <button id="sortInto2" disabled="disabled">➜ List 2</button>
+      </center>
 
-      <button type="submit" id="go">Generate</button>
+      <br />
 
-      <div id="output"></div>
+      <p>Here are your two lists:</p>
+      <div class="two-lists">
+        <textarea id="output1" readonly></textarea>
+        <textarea id="output2" readonly></textarea>
+      </div>
+
+      <br />
+      <center>Refresh to reset.</center>
     </main>
     <div class="back-link" aria-hidden="true"><a href="/">⮪</a></div>
   </body>

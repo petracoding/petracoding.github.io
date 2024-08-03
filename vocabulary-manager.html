@@ -16,11 +16,16 @@
   <body class="vocabulary-manager">
     <main>
       <h1>Vocabulary Manager</h1>
-      <p>This is a little tool that I wrote for myself because managing my vocabulary lists got out of hand. Created by <a href="https://petracoding.github.io/">Petra</a>.</p>
+      <p>
+        This is a little tool that I wrote for myself because managing my vocabulary lists got out of hand. Created by <a href="https://petracoding.github.io/">Petra</a>. Also try my
+        <a href="/manual-list-sorter.html">Manual List Sorter</a>.
+      </p>
       <h2>Input:</h2>
 
       <span>Enter your words/phrases <small>(separated by new line and/or comma)</small>:</span>
-      <textarea placeholder="example 1, example2">example 1, example2</textarea>
+      <textarea placeholder="example, example">
+Lorem,ipsum,dolor,sit,amet,consetetur,sadipscing,elitr,sed,diam,nonumy,eirmod,tempor,invidunt,ut,labore,et,dolore,magna,aliquyam,erat,sed,diam,voluptua.,at,vero,eos,et,accusam,et,justo,duo,dolores,et,ea,rebum.,stet,clita,kasd,gubergren,no,sea,takimata,sanctus,est,Lorem,ipsum,dolor,sit,amet.</textarea
+      >
 
       <label><input type="checkbox" id="sort" checked="true" /> Sort alphabetically</label><br />
       <label><input type="checkbox" id="lowercase" checked="true" /> Change all to lowercase</label><br />
@@ -29,10 +34,10 @@
       <label><input type="checkbox" id="removeDuplicates" checked="true" /> Remove duplicates</label><br />
       <div class="wrap wrap-removeDuplicates" style="padding-left: 1em">
         <label
-          ><input type="checkbox" id="removeAdverbDuplicates" /> Attempt to remove adverb duplicates <small>(e.g. happy, <s>happily</s>)</small></label
+          ><input type="checkbox" id="removeAdverbDuplicates" /> Attempt to remove English adverb duplicates <small>(e.g. happy, <s>happily</s>)</small></label
         ><br />
         <label
-          ><input type="checkbox" id="removePluralDuplicates" /> Attempt to remove plural/3rd person duplicates <small>(e.g. car, <s>cars</s>; smile, <s>smiles</s>)</small></label
+          ><input type="checkbox" id="removePluralDuplicates" /> Attempt to remove English plural/3rd person duplicates <small>(e.g. car, <s>cars</s>; smile, <s>smiles</s>)</small></label
         ><br />
       </div>
       <label><input type="checkbox" id="maxWords" checked="true" /> Generate multiple lists of n words</label><br />

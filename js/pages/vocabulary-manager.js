@@ -109,10 +109,12 @@ function changeArray(words) {
       }
     }
 
-    if (!isDuplicate) {
-      changedWords.push(changedWord);
-    } else {
-      duplicateWords.push(changedWord);
+    if (changedWord !== "") {
+      if (!isDuplicate) {
+        changedWords.push(changedWord);
+      } else {
+        duplicateWords.push(changedWord);
+      }
     }
   });
 

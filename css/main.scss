@@ -1,6 +1,7 @@
 @import "./pages/tumblr-tag-list-tool";
 @import "./pages/notion-widgets";
 @import "./pages/pinterest-board";
+@import "./pages/manual-list-sorter";
 
 // ---
 
@@ -183,8 +184,13 @@ button {
   margin: 20px 0;
   cursor: pointer;
 
-  &:hover,
-  &:focus {
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &:not([disabled]):hover,
+  &:not([disabled]):focus {
     filter: brightness(0.95);
   }
 }
@@ -256,8 +262,8 @@ button {
   }
 
   button {
-    &:hover,
-    &:focus {
+    &:not([disabled]):hover,
+    &:not([disabled]):focus {
       filter: brightness(0.8);
     }
   }
