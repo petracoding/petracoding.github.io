@@ -1,0 +1,28 @@
+.tumblr-tag-list-tool {
+  span {
+    display: block;
+    margin-top: 30px;
+  }
+
+  label {
+    width: 100%;
+    display: block;
+    margin-top: 10px;
+  }
+
+  #output {
+    padding: 10px;
+    border: 2px solid lightgray;
+    max-height: 85vh;
+    overflow-y: auto;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  .wrap {
+    margin-left: 30px;
+    margin-bottom: 20px;
+  }
+}

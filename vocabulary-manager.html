@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vocabulary Manager</title>
+    <script src="main.js?nocache=1"></script>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  </head>
+  <body class="vocabulary-manager">
+    <main>
+      <h1>Vocabulary Manager</h1>
+      <p>This is a little tool that I wrote for myself because managing my vocabulary lists got out of hand. Created by <a href="https://petracoding.github.io/">Petra</a>.</p>
+      <h2>Input:</h2>
+
+      <span>Enter your words/phrases <small>(separated by new line and/or comma)</small>:</span>
+      <textarea placeholder="example 1, example2">example 1, example2</textarea>
+
+      <label><input type="checkbox" id="sort" checked="true" /> Sort alphabetically</label><br />
+      <label><input type="checkbox" id="lowercase" checked="true" /> Change all to lowercase</label><br />
+      <label><input type="checkbox" id="removePuncuation" checked="true" /> Remove punctuation <small>(.;!?"')</small></label
+      ><br />
+      <label><input type="checkbox" id="removeDuplicates" checked="true" /> Remove duplicates</label><br />
+      <div class="wrap wrap-removeDuplicates" style="padding-left: 1em">
+        <label
+          ><input type="checkbox" id="removeAdverbDuplicates" /> Attempt to remove adverb duplicates <small>(e.g. happy, <s>happily</s>)</small></label
+        ><br />
+        <label
+          ><input type="checkbox" id="removePluralDuplicates" /> Attempt to remove plural/3rd person duplicates <small>(e.g. car, <s>cars</s>; smile, <s>smiles</s>)</small></label
+        ><br />
+      </div>
+      <label><input type="checkbox" id="maxWords" checked="true" /> Generate multiple lists of n words</label><br />
+      <div class="wrap wrap-maxWords" style="padding-left: 1em">
+        <label><input type="number" id="maxWordsN" value="20" style="max-width: 5em" min="2" /> max. words per list</label><br />
+        <label><input type="checkbox" id="randomizeOrder" /> Randomize order before splitting</label><br />
+      </div>
+
+      <br />
+
+      <div class="wrap separator-wrap">
+        <span>Separate words in output with <small>(leave empty for new line)</small>:</span>
+        <input type="text" id="separator" value="," />
+      </div>
+
+      <h2>Output:</h2>
+      <button type="submit" id="go">Generate</button>
+      <p style="user-select: none">Number of items: <b id="outputNumber">?</b>. Number of removed items: <b id="outputRemovedNumber">?</b>. Number of lists: <b id="outputLists">?</b>.</p>
+      <br />
+      <div id="output" style="word-wrap: anywhere; font-size: 0.8em; line-height: 1"></div>
+    </main>
+    <div class="back-link" aria-hidden="true"><a href="/">⮪</a></div>
+  </body>
+</html>

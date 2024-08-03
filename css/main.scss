@@ -1,4 +1,264 @@
-@import "./folder/main";
-@import "./subpages/tumblr-tag-list-tool";
-@import "./subpages/notion-widgets";
-@import "./subpages/pinterest-board";
+@import "./pages/tumblr-tag-list-tool";
+@import "./pages/notion-widgets";
+@import "./pages/pinterest-board";
+
+// ---
+
+@font-face {
+  font-family: "basiic";
+  src: url(https://cinni.net/fonts/basiic.ttf);
+}
+
+* {
+  box-sizing: border-box;
+  color: #251d35;
+}
+
+body {
+  font-family: "basiic", "Mukta", sans-serif;
+  letter-spacing: -0.03em;
+  font-size: 17px;
+  line-height: 1.8;
+  display: flex;
+  justify-content: center;
+  background: #f8f2f2;
+
+  @media (min-width: 1000px) {
+    font-size: 19px;
+    line-height: 1.5;
+  }
+}
+
+a {
+  &,
+  &:visited {
+    &,
+    & small {
+      color: #1d5999;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    &,
+    & small {
+      color: #003166;
+      text-decoration-style: wavy;
+    }
+  }
+}
+
+main {
+  width: 95%;
+  max-width: 850px;
+
+  @media (min-width: 1000px) {
+    width: 90%;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+  }
+}
+
+p {
+  margin: 0.5em 0;
+  text-align: justify;
+}
+
+ul {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+}
+
+li {
+  margin: 0.2em 0;
+
+  .md {
+    vertical-align: middle;
+  }
+}
+
+h1,
+h2 {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+h2 {
+  margin-top: 1.5em;
+  font-size: 20px;
+
+  @media (min-width: 1000px) {
+    font-size: 28px;
+  }
+}
+
+small {
+  font-size: 0.8em;
+}
+
+.cursor {
+  animation: blink 1s step-start 0s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.back-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 0.5em;
+  line-height: 1;
+
+  a {
+    display: block;
+    text-decoration: none;
+    color: #251d35;
+    padding: 0.5em;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+      color: #251d35;
+    }
+  }
+
+  @media (max-width: 900px) {
+    display: none;
+  }
+}
+
+/*
+	FORM
+*/
+
+button,
+input[type="text"],
+input[type="number"],
+input[type="color"],
+textarea,
+select {
+  font-family: "Mukta", sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  background: #eee4e4;
+  border: 1px solid rgb(137, 137, 137);
+  padding: 5px 15px;
+
+  @media (min-width: 1000px) {
+    font-size: 22px;
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid black;
+  }
+}
+
+label {
+  cursor: pointer;
+}
+
+input[type="text"] {
+  margin-top: 10px;
+  width: 100%;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  filter: saturate(0) brightness(0.9);
+}
+
+textarea {
+  width: 100%;
+  margin: 10px 0;
+  min-height: 250px;
+}
+
+button {
+  margin: 20px 0;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    filter: brightness(0.95);
+  }
+}
+
+/*
+	DARK SCHEME
+*/
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: rgb(12, 11, 14);
+  }
+
+  * {
+    color: rgb(190, 188, 195);
+  }
+
+  a {
+    &,
+    &:visited {
+      &,
+      & small {
+        color: #6c89b7;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      &,
+      & small {
+        color: #3b609c;
+      }
+    }
+  }
+
+  .back-link {
+    a {
+      color: rgb(190, 188, 195);
+
+      &:hover,
+      &:focus {
+        color: rgb(190, 188, 195);
+      }
+    }
+  }
+
+  /*
+	FORM
+*/
+
+  button,
+  input[type="text"],
+  input[type="number"],
+  input[type="color"],
+  textarea,
+  select {
+    color: rgb(190, 188, 195);
+    background: rgb(42, 42, 44);
+    border-color: rgb(42, 42, 44);
+
+    &:focus {
+      border-color: #f4ecec;
+    }
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    filter: invert(1) saturate(0);
+  }
+
+  button {
+    &:hover,
+    &:focus {
+      filter: brightness(0.8);
+    }
+  }
+}
