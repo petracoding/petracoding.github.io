@@ -3,14 +3,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const removeDuplicatesCheckbox = document.querySelector("#removeDuplicates");
   const maxWordsCheckbox = document.querySelector("#maxWords");
+  const removeWordsCheckbox = document.querySelector("#removeWords");
 
   prepare();
   removeDuplicatesCheckbox.addEventListener("change", prepare);
   maxWordsCheckbox.addEventListener("change", prepare);
+  removeWordsCheckbox.addEventListener("change", prepare);
 
   function prepare() {
     document.querySelector(".wrap-removeDuplicates").style.display = removeDuplicatesCheckbox.checked ? "block" : "none";
     document.querySelector(".wrap-maxWords").style.display = maxWordsCheckbox.checked ? "block" : "none";
+    document.querySelector(".wrap-removeWords").style.display = removeWordsCheckbox.checked ? "block" : "none";
   }
 
   document.querySelector("#go").addEventListener("click", () => {
@@ -55,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
       [...chunkedLists].forEach((list) => {
         if (sort && randomizeOrder) list.sort();
         o += list.join(separator);
-        o += "<hr>";
+        o += "<hr><p style='opacity:0;font-size: 1px;'>--------------------------</p>";
       });
       document.querySelector("#outputLists").innerHTML = chunkedLists.length;
     } else {
@@ -68,18 +71,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function changeArray(words) {
   const lowercase = document.querySelector("#lowercase").checked;
-  const removePuncuation = document.querySelector("#removePuncuation").checked;
+  const removePunctuation = document.querySelector("#removePunctuation").checked;
   const removeDuplicates = document.querySelector("#removeDuplicates").checked;
   const removeAdverbDuplicates = document.querySelector("#removeAdverbDuplicates").checked;
   const removePluralDuplicates = document.querySelector("#removePluralDuplicates").checked;
+  const removeWords = document.querySelector("#removeWords").checked;
   const changedWords = [],
-    duplicateWords = [];
+    duplicateWords = [],
+    removedWords = [];
 
   words.forEach((word) => {
     let changedWord = word.trim();
     if (lowercase) changedWord = changedWord.toLowerCase();
 
-    if (removePuncuation) {
+    if (removePunctuation) {
       changedWord = changedWord
         .replaceAll(",", "")
         .replaceAll(";", "")
@@ -109,6 +114,19 @@ function changeArray(words) {
       }
     }
 
+    if (removeWords) {
+      const wordsToRemove = document.querySelector("#wordsToRemove").value.toLowerCase();
+      const wordsToRemoveArr = wordsToRemove
+        .trim()
+        .split(/[\n,]+/)
+        .map((x) => x.trim());
+
+      if (wordsToRemoveArr.includes(changedWord.toLowerCase()) || wordsToRemoveArr.includes(word.toLowerCase())) {
+        removedWords.push(changedWord);
+        changedWord = "";
+      }
+    }
+
     if (changedWord !== "") {
       if (!isDuplicate) {
         changedWords.push(changedWord);
@@ -120,6 +138,9 @@ function changeArray(words) {
 
   console.log("Removed Duplicate Words:");
   console.log(duplicateWords);
+  console.log("Removed Words:");
+  console.log(removedWords);
+  console.log("--------------");
 
   return changedWords;
 }

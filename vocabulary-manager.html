@@ -29,7 +29,7 @@ Lorem,ipsum,dolor,sit,amet,consetetur,sadipscing,elitr,sed,diam,nonumy,eirmod,te
 
       <label><input type="checkbox" id="sort" checked="true" /> Sort alphabetically</label><br />
       <label><input type="checkbox" id="lowercase" checked="true" /> Change all to lowercase</label><br />
-      <label><input type="checkbox" id="removePuncuation" checked="true" /> Remove punctuation <small>(.;!?"')</small></label
+      <label><input type="checkbox" id="removePunctuation" checked="true" /> Remove punctuation <small>(.;!?"')</small></label
       ><br />
       <label><input type="checkbox" id="removeDuplicates" checked="true" /> Remove duplicates</label><br />
       <div class="wrap wrap-removeDuplicates" style="padding-left: 1em">
@@ -45,6 +45,10 @@ Lorem,ipsum,dolor,sit,amet,consetetur,sadipscing,elitr,sed,diam,nonumy,eirmod,te
         <label><input type="number" id="maxWordsN" value="20" style="max-width: 5em" min="2" /> max. words per list</label><br />
         <label><input type="checkbox" id="randomizeOrder" /> Randomize order before splitting</label><br />
       </div>
+      <label><input type="checkbox" id="removeWords" /> Remove certain words</label><br />
+      <div class="wrap wrap-removeWords" style="padding-left: 1em">
+        <textarea id="wordsToRemove" placeholder="example, example" style="min-height: 150px"></textarea>
+      </div>
 
       <br />
 
@@ -55,6 +59,7 @@ Lorem,ipsum,dolor,sit,amet,consetetur,sadipscing,elitr,sed,diam,nonumy,eirmod,te
 
       <h2>Output:</h2>
       <button type="submit" id="go">Generate</button>
+      <!-- <button type="submit" id="copy">Copy</button> -->
       <p style="user-select: none">Number of items: <b id="outputNumber">?</b>. Number of removed items: <b id="outputRemovedNumber">?</b>. Number of lists: <b id="outputLists">?</b>.</p>
       <br />
       <div id="output" style="word-wrap: anywhere; font-size: 0.8em; line-height: 1"></div>
