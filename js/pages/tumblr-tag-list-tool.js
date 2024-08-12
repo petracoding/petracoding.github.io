@@ -44,7 +44,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
         if (groupTags && !isFirstGroup) {
           o += "<br/>";
         }
+        let i = 0;
         tags.forEach((tag) => {
+          i++;
+          let isLastTag = i == tags.length;
           tag = tag.trim();
           if (tag !== "," && tag !== "") {
             if (isHeading) {
@@ -62,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 (addHashtags ? "#" : "") +
                 tag +
                 "</a>" +
-                (eachTagInNewLine ? "<br/>" : separator);
+                (eachTagInNewLine ? "<br/>" : isLastTag ? "" : separator);
             }
           }
         });
