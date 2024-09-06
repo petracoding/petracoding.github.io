@@ -5,28 +5,23 @@
 
 // ---
 
-@font-face {
-  font-family: "basiic";
-  src: url(https://cinni.net/fonts/basiic.ttf);
-}
-
 * {
+  font-family: "Noto Sans Mono", "Consolas", "SF Mono", monospace;
   box-sizing: border-box;
-  color: #251d35;
+  color: #2f283c;
+  user-select: none;
 }
 
 body {
-  font-family: "basiic", "Mukta", sans-serif;
-  letter-spacing: -0.03em;
-  font-size: 17px;
-  line-height: 1.8;
+  font-size: 16px;
+  line-height: 1.5;
   display: flex;
   justify-content: center;
   background: #f8f2f2;
 
   @media (min-width: 1000px) {
     font-size: 19px;
-    line-height: 1.5;
+    line-height: 1.7;
   }
 }
 
@@ -35,7 +30,10 @@ a {
   &:visited {
     &,
     & small {
-      color: #1d5999;
+      color: #084a90;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.3s ease;
     }
   }
 
@@ -43,20 +41,45 @@ a {
   &:focus {
     &,
     & small {
-      color: #003166;
+      background: linear-gradient(to right, #0099ff, #00ff00, #ff3399, #6666ff);
+      background-clip: text;
+      color: transparent;
+      animation: rainbow_animation 1.5s ease-in-out infinite;
+      background-size: 400% 100%;
       text-decoration-style: wavy;
+      transform: scale(1.03) rotate(-1deg);
     }
   }
 }
 
+@keyframes rainbow_animation {
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 100% 0;
+  }
+}
+
+::selection {
+  background: #1d5999;
+}
+
 main {
   width: 95%;
-  max-width: 850px;
+  max-width: 880px;
 
   @media (min-width: 1000px) {
     width: 90%;
     padding-top: 10vh;
     padding-bottom: 10vh;
+  }
+
+  @media (max-height: 800px) {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
   }
 }
 
@@ -67,15 +90,19 @@ p {
 
 ul {
   margin: 0.5em 0;
-  padding-left: 1.5em;
+  padding-left: 1.1em;
 }
 
 li {
-  margin: 0.2em 0;
+  margin: 0.3em 0;
 
   .md {
     vertical-align: middle;
   }
+}
+
+h1 {
+  letter-spacing: 4px;
 }
 
 h1,
@@ -94,11 +121,22 @@ h2 {
 }
 
 small {
-  font-size: 0.8em;
+  font-size: 0.75em;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), currentColor, rgba(0, 0, 0, 0));
+  margin: 1em 0;
 }
 
 .cursor {
   animation: blink 1s step-start 0s infinite;
+}
+
+.md.hydrated {
+  font-size: 1.1em;
 }
 
 @keyframes blink {
@@ -112,19 +150,22 @@ small {
   top: 0;
   left: 0;
   z-index: 1;
-  padding: 0.5em;
   line-height: 1;
 
   a {
     display: block;
     text-decoration: none;
     color: #251d35;
-    padding: 0.5em;
+    padding: 15px;
+    font-size: 32px;
+    text-decoration: none;
+    transition: 0.3s ease;
 
     &:hover,
     &:focus {
-      text-decoration: underline;
+      text-decoration: none;
       color: #251d35;
+      transform: scale(1.5) rotate(20deg);
     }
   }
 
@@ -143,16 +184,13 @@ input[type="number"],
 input[type="color"],
 textarea,
 select {
-  font-family: "Mukta", sans-serif;
-  font-size: 16px;
+  font-size: 1em;
   line-height: 1.75;
   background: #eee4e4;
   border: 1px solid rgb(137, 137, 137);
   padding: 5px 15px;
-
-  @media (min-width: 1000px) {
-    font-size: 22px;
-  }
+  border-radius: 8px;
+  transition: 0.4s ease;
 
   &:focus {
     outline: none;
@@ -183,6 +221,13 @@ textarea {
 button {
   margin: 20px 0;
   cursor: pointer;
+  transition: 0.4s ease;
+  font-size: 1.1em;
+
+  span {
+    margin: 0 !important;
+    transition: transform 0.4s ease;
+  }
 
   &:disabled {
     cursor: not-allowed;
@@ -192,6 +237,34 @@ button {
   &:not([disabled]):hover,
   &:not([disabled]):focus {
     filter: brightness(0.95);
+    outline: none;
+    border: 1px solid black;
+
+    span {
+      background: linear-gradient(to right, #0099ff, #00ff00, #ff3399, #6666ff);
+      background-clip: text;
+      color: transparent;
+      animation: rainbow_animation 1.5s ease-in-out infinite;
+      background-size: 400% 100%;
+      text-decoration-style: wavy;
+      transform: scale(1.03) rotate(-1deg);
+    }
+  }
+
+  &:not([disabled]):hover {
+    span {
+      background: linear-gradient(to right, #0099ff, #00ff00, #ff3399, #6666ff);
+      background-clip: text;
+      color: transparent;
+      animation: rainbow_animation 1.5s ease-in-out infinite;
+      background-size: 400% 100%;
+      text-decoration-style: wavy;
+      transform: scale(1.03) rotate(-1deg);
+    }
+  }
+
+  &:not([disabled]):active {
+    transform: scale(0.9);
   }
 }
 
@@ -199,72 +272,78 @@ button {
 	DARK SCHEME
 */
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background: rgb(12, 11, 14);
-  }
+// @media (prefers-color-scheme: dark) {
+body {
+  background: rgb(12, 11, 14);
+}
 
-  * {
-    color: rgb(190, 188, 195);
-  }
+* {
+  color: rgb(168, 166, 172);
+}
 
-  a {
+a {
+  &,
+  &:visited {
     &,
-    &:visited {
-      &,
-      & small {
-        color: #6c89b7;
-      }
-    }
-
-    &:hover,
-    &:focus {
-      &,
-      & small {
-        color: #3b609c;
-      }
+    & small {
+      color: #578adb;
     }
   }
 
-  .back-link {
-    a {
-      color: rgb(190, 188, 195);
-
-      &:hover,
-      &:focus {
-        color: rgb(190, 188, 195);
-      }
-    }
-  }
-
-  /*
-	FORM
-*/
-
-  button,
-  input[type="text"],
-  input[type="number"],
-  input[type="color"],
-  textarea,
-  select {
-    color: rgb(190, 188, 195);
-    background: rgb(42, 42, 44);
-    border-color: rgb(42, 42, 44);
-
-    &:focus {
-      border-color: #f4ecec;
-    }
-  }
-
-  input[type="radio"],
-  input[type="checkbox"] {
-    filter: invert(1) saturate(0);
-  }
-
-  button {
-    &:not([disabled]):hover,
-    &:not([disabled]):focus {
-      filter: brightness(0.8);
+  &:hover,
+  &:focus {
+    &,
+    & small {
+      background: linear-gradient(to right, #0099ff, #00ff00, #ff3399, #6666ff);
+      background-clip: text;
+      color: transparent;
+      animation: rainbow_animation 1.5s ease-in-out infinite;
+      background-size: 400% 100%;
+      text-decoration-style: wavy;
     }
   }
 }
+
+::selection {
+  background: #3b609c;
+}
+
+.back-link {
+  a {
+    color: rgb(190, 188, 195);
+
+    &:hover,
+    &:focus {
+      color: rgb(190, 188, 195);
+    }
+  }
+}
+
+button,
+input[type="text"],
+input[type="number"],
+input[type="color"],
+textarea,
+select {
+  color: rgb(190, 188, 195);
+  background: rgb(42, 42, 44);
+  border-color: rgb(42, 42, 44);
+
+  &:focus {
+    border-color: #f4ecec;
+  }
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  filter: invert(1) saturate(0);
+}
+
+button {
+  &:not([disabled]):hover,
+  &:not([disabled]):focus {
+    filter: brightness(0.8);
+    border-color: #f4ecec;
+  }
+}
+// }
