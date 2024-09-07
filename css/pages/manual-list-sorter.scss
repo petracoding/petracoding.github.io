@@ -1,13 +1,29 @@
-@media (min-width: 500px) {
-  .two-lists {
-    display: flex;
+.manual-list-sorter {
+  #word {
+    font-size: 1.5em;
+  }
 
-    textarea:first-child {
-      margin-right: 0.5em;
+  @media (min-width: 500px) {
+    .two-lists {
+      display: flex;
+
+      textarea:first-child {
+        margin-right: 0.5em;
+      }
+
+      textarea:last-child {
+        margin-left: 0.5em;
+      }
     }
 
-    textarea:last-child {
-      margin-left: 0.5em;
+    #word {
+      font-size: 3em;
+    }
+  }
+
+  @media (max-width: 900px) {
+    #word ~ button:last-child {
+      margin-top: 0;
     }
   }
 }

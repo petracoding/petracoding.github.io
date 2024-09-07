@@ -22,57 +22,73 @@ document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
 
-    document.querySelector("#go").addEventListener("click", () => {
-      const outputEl = document.querySelector("#output");
-      const input = document.querySelector("textarea").value;
-      const addHashtags = document.querySelector("#addHashtags").checked;
-      const useSearch = document.querySelector("#useSearch").checked;
-      const eachTagInNewLine = eachTagInNewLineCheckbox.checked;
-      const groupTags = groupTagsCheckbox.checked;
-      const useHeadings = groupTags && document.querySelector("#headings").checked;
-      const url = document.querySelector("#url").value;
-      const separator = document.querySelector("#separator").value || "";
-      let o = "";
-      let isHeading = false;
-      let isFirstGroup = true;
+    generateOutput(eachTagInNewLineCheckbox, groupTagsCheckbox);
 
-      const groups = groupTags ? input.split(/\n\n/) : [input];
-
-      groups.forEach((group) => {
-        const tags = group.split(/[\n,#]+/);
-        isHeading = useHeadings;
-        if (groupTags && !isFirstGroup) {
-          o += "<br/>";
-        }
-        let i = 0;
-        tags.forEach((tag) => {
-          i++;
-          let isLastTag = i == tags.length;
-          tag = tag.trim();
-          if (tag !== "," && tag !== "") {
-            if (isHeading) {
-              o += tag + "<br/>";
-              isHeading = false;
-            } else {
-              const tagSafeForString = tag;
-              o +=
-                "<a href='https://" +
-                (url ? url + "." : "") +
-                "tumblr.com" +
-                (useSearch ? "/search/" : "/tagged/") +
-                tagSafeForString +
-                "'>" +
-                (addHashtags ? "#" : "") +
-                tag +
-                "</a>" +
-                (eachTagInNewLine ? "<br/>" : isLastTag ? "" : separator);
-            }
-          }
-        });
-        isFirstGroup = false;
+    const allInputs = document.querySelectorAll("main input, main textarea");
+    [...allInputs].forEach((inputEl) => {
+      inputEl.addEventListener("change", () => {
+        generateOutput(eachTagInNewLineCheckbox, groupTagsCheckbox);
       });
-
-      outputEl.innerHTML = o;
+      inputEl.addEventListener("input", () => {
+        generateOutput(eachTagInNewLineCheckbox, groupTagsCheckbox);
+      });
     });
+
+    // document.querySelector("#go").addEventListener("click", () => {
+    //   generateOutput(eachTagInNewLineCheckbox, groupTagsCheckbox);
+    // });
   }
 });
+
+function generateOutput(eachTagInNewLineCheckbox, groupTagsCheckbox) {
+  const outputEl = document.querySelector("#output");
+  const input = document.querySelector("textarea").value;
+  const addHashtags = document.querySelector("#addHashtags").checked;
+  const useSearch = document.querySelector("#useSearch").checked;
+  const eachTagInNewLine = eachTagInNewLineCheckbox.checked;
+  const groupTags = groupTagsCheckbox.checked;
+  const useHeadings = groupTags && document.querySelector("#headings").checked;
+  const url = document.querySelector("#url").value;
+  const separator = document.querySelector("#separator").value || "";
+  let o = "";
+  let isHeading = false;
+  let isFirstGroup = true;
+
+  const groups = groupTags ? input.split(/\n\n/) : [input];
+
+  groups.forEach((group) => {
+    const tags = group.split(/[\n,#]+/);
+    isHeading = useHeadings;
+    if (groupTags && !isFirstGroup) {
+      o += "<br/>";
+    }
+    let i = 0;
+    tags.forEach((tag) => {
+      i++;
+      let isLastTag = i == tags.length;
+      tag = tag.trim();
+      if (tag !== "," && tag !== "") {
+        if (isHeading) {
+          o += tag + "<br/>";
+          isHeading = false;
+        } else {
+          const tagSafeForString = tag;
+          o +=
+            "<a href='https://" +
+            (url ? url + "." : "") +
+            "tumblr.com" +
+            (useSearch ? "/search/" : "/tagged/") +
+            tagSafeForString +
+            "'>" +
+            (addHashtags ? "#" : "") +
+            tag +
+            "</a>" +
+            (eachTagInNewLine ? "<br/>" : isLastTag ? "" : separator);
+        }
+      }
+    });
+    isFirstGroup = false;
+  });
+
+  outputEl.innerHTML = o;
+}

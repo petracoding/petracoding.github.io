@@ -9,10 +9,15 @@
   font-family: "Noto Sans Mono", "Consolas", "SF Mono", monospace;
   box-sizing: border-box;
   color: #2f283c;
+}
+
+h1,
+h2 {
   user-select: none;
 }
 
 body {
+  padding: 10px;
   font-size: 16px;
   line-height: 1.5;
   display: flex;
@@ -34,6 +39,10 @@ a {
       text-decoration: none;
       display: inline-block;
       transition: transform 0.3s ease;
+
+      @media (max-width: 900px) {
+        display: inline;
+      }
     }
   }
 
@@ -77,7 +86,7 @@ main {
     padding-bottom: 10vh;
   }
 
-  @media (max-height: 800px) {
+  @media (min-width: 1000px) and (max-height: 800px) {
     padding-top: 5vh;
     padding-bottom: 5vh;
   }
@@ -137,6 +146,7 @@ hr {
 
 .md.hydrated {
   font-size: 1.1em;
+  transform: translateX(-5px);
 }
 
 @keyframes blink {
@@ -161,16 +171,17 @@ hr {
     text-decoration: none;
     transition: 0.3s ease;
 
+    @media (max-width: 900px) {
+      padding: 10px;
+      font-size: 24px;
+    }
+
     &:hover,
     &:focus {
       text-decoration: none;
       color: #251d35;
       transform: scale(1.5) rotate(20deg);
     }
-  }
-
-  @media (max-width: 900px) {
-    display: none;
   }
 }
 
@@ -225,6 +236,7 @@ button {
   font-size: 1.1em;
 
   span {
+    display: inline-block;
     margin: 0 !important;
     transition: transform 0.4s ease;
   }
@@ -247,7 +259,7 @@ button {
       animation: rainbow_animation 1.5s ease-in-out infinite;
       background-size: 400% 100%;
       text-decoration-style: wavy;
-      transform: scale(1.03) rotate(-1deg);
+      transform: scale(1.04) rotate(-2deg);
     }
   }
 

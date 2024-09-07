@@ -11,13 +11,34 @@
   }
 
   #output {
-    padding: 10px;
+    padding: 20px;
     border: 2px solid lightgray;
+    border-radius: 8px;
     max-height: 85vh;
     overflow-y: auto;
+    margin-top: 1em;
+
+    &,
+    * {
+      user-select: auto;
+    }
 
     &:empty {
       display: none;
+    }
+
+    a {
+      color: currentColor !important;
+      background: none !important;
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+      text-decoration: underline;
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
     }
   }
 
