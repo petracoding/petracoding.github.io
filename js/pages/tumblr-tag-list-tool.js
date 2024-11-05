@@ -53,6 +53,7 @@ function generateOutput(eachTagInNewLineCheckbox, groupTagsCheckbox) {
   let o = "";
   let isHeading = false;
   let isFirstGroup = true;
+  let totalTagCount = 0;
 
   const groups = groupTags ? input.split(/\n\n/) : [input];
 
@@ -72,6 +73,7 @@ function generateOutput(eachTagInNewLineCheckbox, groupTagsCheckbox) {
           o += tag + "<br/>";
           isHeading = false;
         } else {
+          totalTagCount++;
           const tagSafeForString = tag;
           o +=
             "<a href='https://" +
@@ -91,4 +93,10 @@ function generateOutput(eachTagInNewLineCheckbox, groupTagsCheckbox) {
   });
 
   outputEl.innerHTML = o;
+
+  if (totalTagCount > 100) {
+    document.querySelector("#warning").innerHTML = "Warning: You have " + totalTagCount + " tags. It's not possible to have more than 100 tags in a single tumblr post!";
+  } else {
+    document.querySelector("#warning").innerHTML = "";
+  }
 }
