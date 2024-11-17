@@ -16,23 +16,29 @@
   <body class="manual-list-sorter">
     <main>
       <h1>Manual List Sorter Tool</h1>
-      <p>This is a little tool to easily create tag lists you can share anywhere.</p>
       <br />
 
       <p>Insert your comma-seperated list here:</p>
       <textarea id="input" placeholder="example, example">
 Lorem,ipsum,dolor,sit,amet,consetetur,sadipscing,elitr,sed,diam,nonumy,eirmod,tempor,invidunt,ut,labore,et,dolore,magna,aliquyam,erat,sed,diam,voluptua.,at,vero,eos,et,accusam,et,justo,duo,dolores,et,ea,rebum.,stet,clita,kasd,gubergren,no,sea,takimata,sanctus,est,Lorem,ipsum,dolor,sit,amet.</textarea
       >
-      <button id="start"><span>start</span></button>
+      <b> choose a mode to start:</b>
+      <button id="start"><span>ask for each</span></button>
+      or
+      <button id="select"><span>select</span></button>
+
+      <div id="selects"></div>
 
       <br />
 
-      <center>
-        <span id="word">click start to start</span>
+      <center id="manualsorting" style="display: none">
+        <span id="word">click 'sort' to start</span>
         <br />
         <button id="sortInto1" disabled="disabled"><span>➜ List 1</span></button>
         <button id="sortInto2" disabled="disabled"><span>➜ List 2</span></button>
       </center>
+
+      <button id="selectdone" style="display: none"><span>done! generate lists</span></button>
 
       <br />
 

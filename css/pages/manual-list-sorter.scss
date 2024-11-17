@@ -3,6 +3,26 @@
     font-size: 1.5em;
   }
 
+  #selects {
+    display: flex;
+    flex-wrap: wrap;
+    user-select: none;
+
+    div {
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 10px;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      &.selected {
+        background: rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+
   @media (min-width: 500px) {
     .two-lists {
       display: flex;
