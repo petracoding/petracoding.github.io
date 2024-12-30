@@ -31,6 +31,7 @@
     <script>
       const link = findGetParameter("link");
       const hideHeader = findGetParameter("hideHeader") || false;
+      const hideFooter = findGetParameter("hideFooter") || false;
       const transparent = findGetParameter("transparent") || false;
 
       if (link) {
@@ -45,6 +46,16 @@
 		      }
 			  
 			 body > *:first-child { padding-top: 10px; } `;
+        document.head.appendChild(styleSheet);
+      }
+
+      if (hideFooter == "1") {
+        var styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+		    body > span > span[data-pin-log="embed_user_ft"]:last-child {
+		        display: none !important;
+		      }
+			 	 body > *:first-child { padding-bottom: 10px; }   `;
         document.head.appendChild(styleSheet);
       }
 
