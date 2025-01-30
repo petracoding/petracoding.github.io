@@ -18,15 +18,16 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function generateOutput1(input) {
+    const bulletPoints = ["■", "✦", "✧", "●", "⬥"];
     const output = input
       .replaceAll(/\*\*(.+)\*\*/g, "$1") // remove bold
       .replaceAll(/\*(.+)\*/g, "$1") // remove italic
       .replaceAll(/\s+!\[.*\]\(.*\)\s+/g, "\n") // remove images
-      .replaceAll("                -", " ‍ ‍‍ ‍ ‍‍ ‍ ‍‍ ‍ ‍‍ ‍ ‍‍ ‍‍ ‍ ‍✧") // level 5
-      .replaceAll("            -", " ‍ ‍‍ ‍ ‍‍ ‍ ‍‍ ‍ ‍‍ ‍ ‍‍ ‍‍ ‍ ‍⬥") // level 4
-      .replaceAll("        -", " ‍ ‍‍ ‍ ‍‍ ‍ ‍‍ ‍ ‍‍ ‍■") // level 3
-      .replaceAll("    -", " ‍ ‍‍ ‍ ‍‍ ‍ ‍ ✦") // level 2
-      .replaceAll("- ", "● "); // level 1
+      .replaceAll("                -", " ‍ ‍‍ ‍ ‍‍ ‍ ‍‍ ‍ ‍‍ ‍ ‍ ‍ ‍‍ ‍‍ ‍ " + bulletPoints[4]) // level 5
+      .replaceAll("            -", " ‍ ‍‍ ‍ ‍‍ ‍ ‍‍ ‍ ‍‍ ‍ ‍‍ ‍‍ ‍ ‍" + bulletPoints[3]) // level 4
+      .replaceAll("        -", " ‍ ‍‍ ‍ ‍‍ ‍ ‍‍ ‍ ‍‍ ‍" + bulletPoints[2]) // level 3
+      .replaceAll("    -", " ‍ ‍‍ ‍ ‍‍ " + bulletPoints[1]) // level 2
+      .replaceAll("- ", bulletPoints[0] + " "); // level 1
     output1.value = output;
     copyToClipboard(output1.value);
   }
