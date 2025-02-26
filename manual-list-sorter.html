@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Manual List Sorter</title>
-    <script src="main.js"></script>
+    <script src="main.js?nocache=1"></script>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
     <meta content="utf-8" http-equiv="encoding" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,7 +25,7 @@ Lorem,ipsum,dolor,sit,amet,consetetur,sadipscing,elitr,sed,diam,nonumy,eirmod,te
       <b> choose a mode to start:</b>
       <button id="start"><span>ask for each</span></button>
       or
-      <button id="select"><span>select</span></button>
+      <button id="select"><span>select manually</span></button>
 
       <div id="selects"></div>
 
@@ -38,11 +38,12 @@ Lorem,ipsum,dolor,sit,amet,consetetur,sadipscing,elitr,sed,diam,nonumy,eirmod,te
         <button id="sortInto2" disabled="disabled"><span>➜ List 2</span></button>
       </center>
 
+      <div id="numberselected"></div>
       <button id="selectdone" style="display: none"><span>done! generate lists</span></button>
 
       <br />
 
-      <p>Here are your two lists:</p>
+      <p>Here are your two lists: <span id="outputNumber"></span></p>
       <div class="two-lists">
         <textarea id="output1" readonly></textarea>
         <textarea id="output2" readonly></textarea>

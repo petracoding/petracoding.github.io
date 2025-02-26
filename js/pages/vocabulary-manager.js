@@ -75,6 +75,7 @@ function changeArray(words) {
   const removeDuplicates = document.querySelector("#removeDuplicates").checked;
   const removeAdverbDuplicates = document.querySelector("#removeAdverbDuplicates").checked;
   const removePluralDuplicates = document.querySelector("#removePluralDuplicates").checked;
+  const removeGerundDuplicates = document.querySelector("#removeGerundDuplicates").checked;
   const removeWords = document.querySelector("#removeWords").checked;
   const changedWords = [],
     duplicateWords = [],
@@ -111,6 +112,12 @@ function changeArray(words) {
         if (changedWords.includes(changedWord.replace(/s$/, ""))) isDuplicate = true;
         if (changedWords.includes(changedWord.replace(/es$/, ""))) isDuplicate = true;
         if (changedWords.includes(changedWord.replace(/es$/, "e"))) isDuplicate = true;
+      }
+
+      if (removeGerundDuplicates) {
+        if (changedWords.includes(changedWord.replace(/ing$/, ""))) isDuplicate = true;
+        if (changedWords.includes(changedWord.replace(/ing$/, "e"))) isDuplicate = true;
+        if (changedWords.includes(changedWord.replace(/ing$/, "ed"))) isDuplicate = true;
       }
     }
 

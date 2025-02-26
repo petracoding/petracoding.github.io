@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Vocabulary Manager</title>
-    <script src="main.js?nocache=4"></script>
+    <script src="main.js?nocache=5"></script>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
     <meta content="utf-8" http-equiv="encoding" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -38,6 +38,9 @@ Lorem,ipsum,dolor,sit,amet,consetetur,sadipscing,elitr,sed,diam,nonumy,eirmod,te
         ><br />
         <label
           ><input type="checkbox" id="removePluralDuplicates" /> Attempt to remove English plural/3rd person duplicates <small>(e.g. car, <s>cars</s>; smile, <s>smiles</s>)</small></label
+        ><br />
+        <label
+          ><input type="checkbox" id="removeGerundDuplicates" /> Attempt to remove English gerund (-ing) duplicated <small>(e.g. drive, <s>driving</s>)</small></label
         ><br />
       </div>
       <label><input type="checkbox" id="maxWords" checked="true" /> Generate multiple lists of n words</label><br />

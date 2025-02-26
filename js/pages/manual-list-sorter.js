@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let inputList,
     list1 = [],
     list2 = [],
-    currentIndex;
+    currentIndex,
+    numberSelected = 0;
 
   outputTextarea1.value = "";
   outputTextarea2.value = "";
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       outputTextarea1.value = "";
       outputTextarea2.value = "";
+      document.querySelector("#outputNumber").innerHTML = "";
       inputList = inputListTextarea.value.replace(/,\s*$/, "").replaceAll(",,", ",").split(",");
       currentIndex = -1;
       inputListTextarea.setAttribute("disabled", "true");
@@ -87,12 +89,18 @@ document.addEventListener("DOMContentLoaded", function () {
       content += "<div>" + listItem + "</div>";
     });
     document.querySelector("#selects").innerHTML = content;
+    numberSelected = 0;
+    document.querySelector("#numberselected").innerHTML = numberSelected + " selected";
     [...document.querySelectorAll("#selects div")].forEach((btn) => {
       btn.addEventListener("click", () => {
         if (btn.classList.contains("selected")) {
           btn.classList.remove("selected");
+          numberSelected--;
+          document.querySelector("#numberselected").innerHTML = numberSelected + " selected";
         } else {
           btn.classList.add("selected");
+          numberSelected++;
+          document.querySelector("#numberselected").innerHTML = numberSelected + " selected";
         }
       });
     });
@@ -112,6 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     outputTextarea1.value = list1.join(", ");
     outputTextarea2.value = list2.join(", ");
+    document.querySelector("#outputNumber").innerHTML = "(" + list1.length + " and " + list2.length + " items)";
   });
 
   function nextItem() {
