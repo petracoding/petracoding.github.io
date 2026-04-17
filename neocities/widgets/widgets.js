@@ -20,8 +20,8 @@ const knownParams = [
 ];
 
 /*
-  CACHEBUSTING IN HTML!
-*/
+  CACHEBUSTING IN HTML !!!!! 
+  */
 
 document.addEventListener("DOMContentLoaded", function () {
   console.log("%cWidget provided by petrapixel. Get yours: https://petrapixel.neocities.org/coding/widgets", "font-size: 14pt;", "font-size: 16pt;");
@@ -110,10 +110,6 @@ function decodeHtml(html) {
 function initStatuscafe(params) {
   if (!document.getElementById("statuscafe-username")) return;
 
-  if (params.get("marquee")) {
-    if (params.get("marquee") == "1") turnIntoMarquee();
-  }
-
   let username = params.get("username");
   if (!username) {
     document.getElementById("statuscafe-content").innerHTML = "Please enter a username.";
@@ -165,16 +161,9 @@ function initStatuscafe(params) {
           document.querySelector("#marquee-holder").style.flexDirection = "column-reverse";
         }
       }
-      // if (params.get("marquee")) {
-      //   if (params.get("marquee") == "1") {
-      //     document.querySelector("main").style.width = "100%";
-      //     document.querySelector("marquee").style.display = "flex";
-      //     document.querySelector("marquee").style.alignItems = "end";
-      //     document.querySelector("#statuscafe-username").style.flexShrink = "0";
-      //     document.querySelector("#statuscafe-username").style.marginRight = "1em";
-      //     document.querySelector("#statuscafe-content").style.flexShrink = "0";
-      //   }
-      // }
+      if (params.get("marquee")) {
+        if (params.get("marquee") == "1") turnIntoMarquee();
+      }
     });
 }
 
@@ -183,10 +172,6 @@ function initStatuscafe(params) {
  */
 function initLastFm(params) {
   if (!document.querySelector("#song")) return;
-
-  if (params.get("marquee")) {
-    if (params.get("marquee") == "1") turnIntoMarquee();
-  }
 
   // Styling:
   if (params.get("color")) document.querySelector("#song").style.color = params.get("color") == "black" || params.get("color") == "white" ? params.get("color") : "#" + params.get("color");
@@ -252,6 +237,10 @@ function initLastFm(params) {
         song.innerHTML = `<span class="artist">${artist}</span>${delimiter}<span class="name">${songTitle}</span>` + albumCoverHTML;
       } else {
         song.innerHTML = `<span class="name" > ${songTitle}</span>${delimiter}<span class="artist">${artist}</span>` + albumCoverHTML;
+      }
+
+      if (params.get("marquee")) {
+        if (params.get("marquee") == "1") turnIntoMarquee();
       }
     });
 }
