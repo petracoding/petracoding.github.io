@@ -17,6 +17,7 @@ const knownParams = [
   "viewButtonAsLink",
   "spacing",
   "showAlbumCover",
+  "albumCoverLeft",
 ];
 
 /*
@@ -49,6 +50,13 @@ function getParameters() {
 function doCSS(params) {
   // Known:
   if (params.get("center")) {
+    document.body.style.textAlign = params.get("center") == "1" ? "center" : "left";
+
+    if (params.get("center") == "0") {
+      document.body.querySelector("main").style.margin = "0";
+    }
+  }
+  if (params.get("width")) {
     document.body.style.textAlign = params.get("center") == "1" ? "center" : "left";
 
     if (params.get("center") == "0") {
@@ -225,18 +233,30 @@ function initLastFm(params) {
         albumCoverUrl = "https://lastfm.freetls.fastly.net/i/u/300x300/acdd1489ea27beb10b07c58ffdb99a83.jpg";
       }
 
+      let albumCoverHTMLLeft = "";
+      let albumCoverHTMLRight = "";
+
       let albumCoverHTML = "";
       if (params.get("showAlbumCover") && albumCoverUrl) {
         if (params.get("showAlbumCover") != "0") {
           const size = params.get("showAlbumCover") < 10 ? 10 : params.get("showAlbumCover");
           albumCoverHTML = `<img src="${albumCoverUrl}" height="${size}" width="${size}" />`;
+
+          albumCoverHTMLRight = albumCoverHTML;
+
+          if (params.get("albumCoverLeft")) {
+            if (params.get("albumCoverLeft") == "1") {
+              albumCoverHTMLLeft = albumCoverHTML;
+              albumCoverHTMLRight = "";
+            }
+          }
         }
       }
 
       if (swapPositions) {
-        song.innerHTML = `<span class="artist">${artist}</span>${delimiter}<span class="name">${songTitle}</span>` + albumCoverHTML;
+        song.innerHTML = albumCoverHTMLLeft + `<span class="artist">${artist}</span>${delimiter}<span class="name">${songTitle}</span>` + albumCoverHTMLRight;
       } else {
-        song.innerHTML = `<span class="name" > ${songTitle}</span>${delimiter}<span class="artist">${artist}</span>` + albumCoverHTML;
+        song.innerHTML = albumCoverHTMLLeft + `<span class="name" > ${songTitle}</span>${delimiter}<span class="artist">${artist}</span>` + albumCoverHTMLRight;
       }
 
       if (params.get("marquee")) {
