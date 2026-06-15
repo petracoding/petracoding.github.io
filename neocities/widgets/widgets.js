@@ -18,6 +18,8 @@ const knownParams = [
   "spacing",
   "showAlbumCover",
   "albumCoverLeft",
+  "onlyShowAlbumCover",
+  "code",
 ];
 
 /*
@@ -25,7 +27,7 @@ const knownParams = [
   */
 
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("%cWidget provided by petrapixel. Get yours: https://petrapixel.neocities.org/coding/widgets", "font-size: 14pt;", "font-size: 16pt;");
+  console.log("%cWidget provided by petrapixel. Get yours: https://petrapixel.neocities.org/coding/widgets", "font-size: 16pt;");
 
   const params = getParameters();
   console.log("%cParameters:", "font-size: 13pt;");
@@ -35,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initStatuscafe(params);
   initLastFm(params);
   initPollcode(params);
+  initEverythingWidget(params);
 });
 
 function getParameters() {
@@ -42,8 +45,13 @@ function getParameters() {
   let hashString = window.location.hash || ""; // in case of color codes with "#"
   if (!queryString) return [];
   const fullString = queryString + hashString;
-  let fullStringFixed = fullString.replaceAll("&nbsp;", " "); // Fix for encoding
-  fullStringFixed = fullStringFixed.replaceAll("&%20", "＆%20"); // Fix & bug with special character ＆
+
+  // Fix special characters (encoding)
+  let fullStringFixed = fullString.replaceAll("&nbsp;", " ");
+  fullStringFixed = fullStringFixed.replaceAll("&%20", "＆%20");
+  fullStringFixed = fullStringFixed.replaceAll("&amp;", "＆");
+  fullStringFixed = fullStringFixed.replaceAll("&#39;", "'");
+
   return new URLSearchParams(fullStringFixed);
 }
 
@@ -253,10 +261,21 @@ function initLastFm(params) {
         }
       }
 
-      if (swapPositions) {
-        song.innerHTML = albumCoverHTMLLeft + `<span class="artist">${artist}</span>${delimiter}<span class="name">${songTitle}</span>` + albumCoverHTMLRight;
+      let onlyShowAlbumCover = false;
+      if (params.get("onlyShowAlbumCover")) {
+        if (params.get("onlyShowAlbumCover") == "1") {
+          onlyShowAlbumCover = 1;
+        }
+      }
+
+      if (onlyShowAlbumCover) {
+        song.innerHTML = albumCoverHTMLLeft + albumCoverHTMLRight;
       } else {
-        song.innerHTML = albumCoverHTMLLeft + `<span class="name" > ${songTitle}</span>${delimiter}<span class="artist">${artist}</span>` + albumCoverHTMLRight;
+        if (swapPositions) {
+          song.innerHTML = albumCoverHTMLLeft + `<span class="artist">${artist}</span>${delimiter}<span class="name">${songTitle}</span>` + albumCoverHTMLRight;
+        } else {
+          song.innerHTML = albumCoverHTMLLeft + `<span class="name" > ${songTitle}</span>${delimiter}<span class="artist">${artist}</span>` + albumCoverHTMLRight;
+        }
       }
 
       if (params.get("marquee")) {
@@ -314,11 +333,27 @@ function initPollcode(params) {
   }
 
   // make sure the pollcode "voted" website opens in new tab, not the iframe:
-  document.querySelector("#pollcode form").setAttribute("target", "_blank");
+  if (document.querySelector("#pollcode form")) {
+    document.querySelector("#pollcode form").setAttribute("target", "_blank");
+  }
 
   // hide "pollcode.com free polls" text:
   const creditText = document.querySelector("#pollcode form > div > div:last-child");
   if (creditText) {
     creditText.remove();
+  }
+}
+
+/**
+ *   EVERYTHING
+ */
+function initEverythingWidget(params) {
+  const wrapper = document.querySelector("#placeholder");
+  if (!wrapper) return;
+
+  if (params.get("code")) {
+    const encodedCode = params.get("code");
+    const decodedCode = decodeHtml(encodedCode);
+    wrapper.innerHTML = decodedCode;
   }
 }
