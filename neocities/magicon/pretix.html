@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
 
+    <link rel="stylesheet" type="text/css" href="https://pretix.eu/magicon/2026/widget/v2.css" crossorigin />
+    <script type="text/javascript" src="https://pretix.eu/widget/v2.de.js" async crossorigin></script>
+
     <style>
       @font-face {
         font-family: "IM FELL English";
@@ -46,9 +49,46 @@
       .pretix-widget-attribution {
         display: none;
       }
+
+      /* save space on mobile: */
+      @media (max-width: 800px) {
+        .pretix-widget-item-picture-link {
+          display: none;
+        }
+
+        .pretix-widget-item-title-and-description {
+          margin-left: 0 !important;
+        }
+
+        .pretix-widget-item-description {
+          font-size: 0.9em;
+          line-height: 1.3;
+        }
+      }
+      @media (max-width: 500px) {
+        .pretix-widget {
+          margin: 0;
+          border: 0;
+          padding: 0;
+        }
+
+        .pretix-widget .pretix-widget-item-title {
+          font-size: 18px;
+        }
+
+        .pretix-widget-item-description {
+          font-size: 0.8em;
+        }
+
+        .pretix-widget .pretix-widget-item-info-col {
+          padding: 0 5px;
+        }
+
+        .pretix-widget .pretix-widget-availability-unavailable {
+          line-height: 1;
+        }
+      }
     </style>
-    <link rel="stylesheet" type="text/css" href="https://pretix.eu/magicon/2026/widget/v2.css" crossorigin />
-    <script type="text/javascript" src="https://pretix.eu/widget/v2.de.js" async crossorigin></script>
   </head>
   <body>
     <pretix-widget event="https://pretix.eu/magicon/2026/"></pretix-widget>
